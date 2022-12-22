@@ -17,20 +17,23 @@ class Cerc:
     def __init__(self,raza,culoare):
         self.raza = raza
         self.culoare=culoare
-    def descrie_cerc(self):
+    def Descrie_cerc(self):
         print(f'Raza cercului este {self.raza} si are culoarea {self.culoare}')
-    def aria(self):
-       print(f'Aria cercului este {self.raza*self.raza*math.pi}')
-    def diametru(self):
-        print(f'Diametrul cercului este {self.raza+self.raza}')
-    def circumferinta(self):
-        print(f'Circumferinta cercului este {self.raza*2*math.pi}')
+    def Aria(self):
+       #rint(f'Aria cercului este {self.raza*self.raza*math.pi}')
+       return self.raza*self.raza*math.pi
+    def Diametru(self):
+#        print(f'Diametrul cercului este {self.raza+self.raza}')
+       return self.raza+self.raza
+    def Circumferinta(self):
+        #print(f'Circumferinta cercului este {self.raza*2*math.pi}')
+        return self.raza*2*math.pi
 
 p1=Cerc(12,"alb")
-p1.descrie_cerc()
-p1.aria()
-p1.diametru()
-p1.circumferinta()
+p1.Descrie_cerc()
+p1.Aria()
+p1.Diametru()
+p1.Circumferinta()
 
 '''
 2. Clasa Dreptunghi
@@ -46,7 +49,7 @@ Ea va lua ca și parametru o nouă culoare și va suprascrie atributul
 self.culoare. Puteti verifica schimbarea culorii prin apelarea metodei
 descrie().
 '''
-class dreptunghi:
+class Dreptunghi:
     lungime=123
     latime = 123
     culoare=''
@@ -62,14 +65,14 @@ class dreptunghi:
     def perimetru(self):
         print(f'Perimetrul dreptunghiului este {2*self.lungime+2*self.latime}')
     def schimb_cul(self,culoare_nou):
-        dreptunghi.culoare=culoare_nou
+        Dreptunghi.culoare=culoare_nou
         print(f'Culoarea noua este {culoare_nou}')
 
-dr=dreptunghi(20,10,'alb')
+dr=Dreptunghi(20,10,'alb')
 dr.descrie()
 dr.aria()
 dr.perimetru()
-dreptunghi.schimb_cul("alb","rosu")
+Dreptunghi.schimb_cul("alb","rosu")
 
 
 '''
@@ -284,7 +287,7 @@ adauge.
 ○ Dacă acesta răspunde nu - la revedere
 ○ Dacă răspunde da - îi cerem detalii task și salvăm nume+detalii în dict
 '''
-class todoList():
+class TodoList():
 
     def __init__(self):
         self.dict={}
@@ -293,22 +296,22 @@ class todoList():
         self.dict[nume]=descriere
     def detalii_supplimenatre(self,desc):
         desc = input('scrie o descriere: ')
-        if desc is not dict.values():
-            r=input('Doriti sa-l adaugati ')
-        if r=='da':
+        r = input('Doriti sa-l adaugati ')
+        if r=='nu':
+            print("La revedere")
+            breakpoint()
+        else:
             nume = input('Numele taskului')
             self.dict[nume] = desc
 
-# nu stiu cum pot sa verific ca descriere NU  se afla in dictionar
-# ma mai gandesc
 
-d1=todoList()
+d1=TodoList()
 d1.adaugatask('Piata','Cumparaturi')
 d1.adaugatask('Masina','Reparatie')
 d1.adaugatask('Munca','Distractie')
 print(d1.dict)
 print(d1.dict.keys())
-d1.detalii_supplimenatre()
+#d1.detalii_supplimenatre()
 
 
 
