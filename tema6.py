@@ -61,18 +61,17 @@ class Dreptunghi:
     def descrie(self):
         print(f'Dreptunghiul are lungimea {self.lungime}, latimea {self.latime} si culoarea {self.culoare}')
     def aria(self):
-        print(f'Aria dreptunghiului este: {self.latime*self.lungime}')
+        return self.latime*self.lungime
     def perimetru(self):
-        print(f'Perimetrul dreptunghiului este {2*self.lungime+2*self.latime}')
-    def schimb_cul(self,culoare_nou):
-        Dreptunghi.culoare=culoare_nou
-        print(f'Culoarea noua este {culoare_nou}')
-
+        return 2*self.lungime+2*self.latime
+    def schimb_cul(self):
+        self.culoare=input("Culoare noua:")
+        return self.culoare
 dr=Dreptunghi(20,10,'alb')
 dr.descrie()
-dr.aria()
-dr.perimetru()
-Dreptunghi.schimb_cul("alb","rosu")
+print(f'Aria este {dr.aria()}')
+print(f'Perimetrul este {dr.perimetru()}')
+print(f'Culoarea noua este {dr.schimb_cul()}')
 
 
 '''
@@ -86,39 +85,31 @@ Metode:
 ● salariu_anual()
 ● marire_salariu(procent)
 '''
-class angajat:
-    nume = ''
-    prenume = ' '
-    salariu = 123
-
-    def __init__(self, nume, prenume, salariu):
-        self.nume = nume
-        self.prenume = prenume
-        self.salariu = salariu
-
-    def descrie(self):
-        print(f'Andgajatul are numele {self.nume}, prenumele {self.prenume} si salariul {self.salariu} ')
-
-    def nume_complet(self):
-        print(f'Numele complet al angajatului {self.nume} {self.prenume}')
-
-    def sal_lunar(self):
-        print(f'Salariul lunar {self.salariu}')
-
-    def sal_anual(self):
-        print(f'Salariul anual {12 * self.salariu}')
-
-    def marire_sal(self, procent):
-        sal_nou = self.salariu * procent
-        print(f'Salariul nou va fi {sal_nou}')
-
-
-ang = angajat("Popescu", "Ion", 1200)
-ang.descrie()
-ang.nume_complet()
-ang.sal_lunar()
-ang.sal_anual()
-ang.marire_sal(10)
+# class Angajat:
+#     def __init__(self,nume,prenume,salariu):
+#         self.nume = nume
+#         self.prenume = prenume
+#         self.salariu = salariu
+#
+#     def descrie(self):
+#         return {self.nume}+' '+{self.prenume}+' '+{self.salariu}
+#     def nume_complet(self):
+#         return self.nume+' '+self.prenume
+#     def sal_lunar(self):
+#         return self.salariu
+#     def sal_anual(self):
+#         return self.salariu*12
+#     def marire_sal(self, procent):
+#         procent=int(input("Procentul este:"))
+#         return self.salariu == self.salariu * procent
+#
+# ang=Angajat(input('nume '),input('prenume '),int(input('salar ')))
+# ang.descrie()
+# # print(Angajat.descrie())
+# # print(Angajat.nume_complet())
+# print(Angajat.sal_lunar())
+# print(Angajat.sal_anual())
+# print(Angajat.marire_sal())
 
 '''
 4.Clasa Cont
