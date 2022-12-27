@@ -8,7 +8,7 @@ Metode:
 ● diametru()
 ● circumferinta()
 '''
-import datetime
+#import datetime
 import math
 
 class Cerc:
@@ -85,31 +85,36 @@ Metode:
 ● salariu_anual()
 ● marire_salariu(procent)
 '''
-# class Angajat:
-#     def __init__(self,nume,prenume,salariu):
-#         self.nume = nume
-#         self.prenume = prenume
-#         self.salariu = salariu
-#
-#     def descrie(self):
-#         return {self.nume}+' '+{self.prenume}+' '+{self.salariu}
-#     def nume_complet(self):
-#         return self.nume+' '+self.prenume
-#     def sal_lunar(self):
-#         return self.salariu
-#     def sal_anual(self):
-#         return self.salariu*12
-#     def marire_sal(self, procent):
-#         procent=int(input("Procentul este:"))
-#         return self.salariu == self.salariu * procent
-#
-# ang=Angajat(input('nume '),input('prenume '),int(input('salar ')))
-# ang.descrie()
-# # print(Angajat.descrie())
-# # print(Angajat.nume_complet())
-# print(Angajat.sal_lunar())
-# print(Angajat.sal_anual())
-# print(Angajat.marire_sal())
+class Angajat:
+    nume = ''
+    prenume =''
+    salariu =123
+    def __init__(self,nume,prenume,salariu):
+        self.nume = nume
+        self.prenume = prenume
+        self.salariu = salariu
+
+    def descrie(self):
+        return print(f'{self.nume},{self.prenume},{self.salariu}')
+
+    def nume_complet(self):
+        return print(self.nume+' '+self.prenume)
+
+    def sal_lunar(self):
+        return self.salariu
+    def sal_anual(self):
+        return self.salariu*12
+    def marire_sal(self, procent):
+        procent=int(input("Procentul este:"))
+        self.salariu=self.salariu * procent
+        return self.salariu
+
+ang=Angajat(input('nume '),input('prenume '),int(input('salar ')))
+print(ang.descrie())
+print(ang.nume_complet())
+print(ang.sal_lunar())
+print(ang.sal_anual())
+print(ang.marire_sal(12))
 
 '''
 4.Clasa Cont
@@ -131,11 +136,11 @@ class cont:
     def afisare_sold(self):
         print(f'Titularul {self.titular_cont} are in contul {self.iban} sauma {self.sold} lei')
     def debitarecont(self,suma):
-        sold_nou=self.sold+suma
-        print(f'Soldul curent este {sold_nou}')
+        self.sold=self.sold+suma
+        print(f'Soldul curent este {self.sold}')
     def creditarecont(self,suma):
-        sold_n=self.sold-suma
-        print(f'Noul Sold (creditare) este {sold_n}')
+        self.sold=self.sold-suma
+        print(f'Noul Sold (creditare) este {self.sold}')
 
 con= cont('12345btrl09','Pop Ioan',3000)
 con.afisare_sold()
@@ -156,7 +161,7 @@ Data: generați automat data de azi
 Produs | cantitate | preț bucată | Total
 Telefon | 7 | 700 | 49000
 '''
-from datetime import datetime, date
+from datetime import  date
 
 class factura:
     seria = 'x'
@@ -221,18 +226,17 @@ class masina:
     marca='Dacia'
     model=''
     v_max=555
-    v_act=0
     culoare='gri'
     cul_disp={'alb','rosu','albastru','galben','verde'}
     inmatriculata=False
+    viteza=0
     def __init__(self,model,v_max):
         self.model=model
         self.v_max=v_max
     def descrie(self):
-        print(f'Masina {self.marca}, model {self.model}, vit actuala {self.v_act}, vit maxima {self.v_max} inmatriculata {self.inmatriculata}')
+        print(f'Masina {self.marca}, model {self.model}, vit actuala {self.viteza}, vit maxima {self.v_max} inmatriculata {self.inmatriculata}')
     def inmatriculare(self):
-        if self.inmatriculata==False:
-            self.inmatriculata=True
+        self.inmatriculata=True
         print(f'Inmatriculata {self.inmatriculata}')
     def vopseste(self,culoare):
         if culoare in self.cul_disp:
@@ -240,16 +244,19 @@ class masina:
             print(f'Noua culare este {self.culoare}')
         else:
             print(f'Nu exista culoarea {culoare} ')
-    def accelereaza(self,viteza):
-        if viteza <0:
+    def accelereaza(self):
+        viteza = int(input('Vteza este: '))
+        self.viteza=viteza
+        if self.viteza <0:
             print('Eroare')
-        elif viteza>self.v_max:
-            print(f'Viteza maxima este {self.v_max}')
+        elif self.viteza>self.v_max:
+            print(f'Viteza maxima este {self.viteza}')
         else:
-            print(f'Viteza maxima este {viteza}')
+            print(f'Viteza maxima este {self.v_max}')
 
     def franeaza(self):
-        print(f'Masina se opreste si are viteza {self.v_act}')
+        if self.viteza==0:
+            print(f'Masina se opreste si are viteza {self.viteza}')
 
 v1=masina('Spring',180)
 v1.descrie()
@@ -257,10 +264,10 @@ v1.inmatriculare()
 v1.vopseste('rosu')
 v1.vopseste('blu')
 v1.vopseste('galben')
-v1.accelereaza(-200)
-v1.accelereaza(100)
-v1.accelereaza(200)
-v1.accelereaza(300)
+v1.accelereaza()
+v1.accelereaza()
+v1.accelereaza()
+v1.accelereaza()
 v1.franeaza()
 
 ''' 
@@ -285,15 +292,17 @@ class TodoList():
 
     def adaugatask(self,nume,descriere):
         self.dict[nume]=descriere
-    def detalii_supplimenatre(self,desc):
+    def detalii_supplimenatre(self):
         desc = input('scrie o descriere: ')
-        r = input('Doriti sa-l adaugati ')
-        if r=='nu':
-            print("La revedere")
-            breakpoint()
-        else:
+        r = input('Doriti sa-l adaugati (da/nu): ')
+        if r=='da':
             nume = input('Numele taskului')
             self.dict[nume] = desc
+
+        else:
+            print("La revedere")
+
+
 
 
 d1=TodoList()
@@ -302,8 +311,8 @@ d1.adaugatask('Masina','Reparatie')
 d1.adaugatask('Munca','Distractie')
 print(d1.dict)
 print(d1.dict.keys())
-#d1.detalii_supplimenatre()
-
+d1.detalii_supplimenatre()
+print(d1.dict)
 
 
 
