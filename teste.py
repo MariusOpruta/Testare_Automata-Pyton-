@@ -1,43 +1,58 @@
-'''
-3. Clasa TodoList
-Atribute: todo (dict, cheia e numele taskului, valoarea e descrierea)
-La început nu avem taskuri, dict e gol și nu avem nevoie de constructor
-Metode:
-● adauga_task(nume, descriere) - se va adauga in dict
-● finalizează_task(nume) - se va sterge din dict
-● afișează_todo_list() - doar cheile
-● afișează_detalii_suplimentare(nume_task) - în funcție de numele taskului,
-printăm detalii suplimentare.
-○ Dacă taskul nu e în todo list, întrebam utilizatorul dacă vrea să-l
-adauge.
-○ Dacă acesta răspunde nu - la revedere
-○ Dacă răspunde da - îi cerem detalii task și salvăm nume+detalii în dict
-'''
-class TodoList():
-
-    def __init__(self):
-        self.dict={}
-
-    def adaugatask(self,nume,descriere):
-        self.dict[nume]=descriere
-    def detalii_supplimenatre(self):
-        desc = input('scrie o descriere: ')
-        r = input('Doriti sa-l adaugati (da/nu): ')
-        if r=='da':
-            nume = input('Numele taskului')
-            self.dict[nume] = desc
-
-        else:
-            print("La revedere")
+from abc import ABC
 
 
+def abstractmetrod(ABC):
+    pass
 
 
-d1=TodoList()
-d1.adaugatask('Piata','Cumparaturi')
-d1.adaugatask('Masina','Reparatie')
-d1.adaugatask('Munca','Distractie')
-print(d1.dict)
-print(d1.dict.keys())
-d1.detalii_supplimenatre()
-print(d1.dict)
+class FormeGeometrice(ABC):
+    PI = 3.14
+    @abstractmetrod
+    def aria(self):
+        raise
+    @abstractmetrod
+    def descrie(self):
+        raise
+class Descrie(FormeGeometrice):
+    print('Cel mai probabil am colturi')
+
+class Patrat(FormeGeometrice):
+    def __int__(self,latura):
+        self.latura=latura
+
+    @property
+    def latura(self):
+        return self.latura
+    @latura.getter
+    def latura(self):
+        print(f'Latura este {self.latura}')
+        return self.latura
+    @latura.setter
+    def latura(self,latura):
+        print(f'Latura devine {self.latura}')
+        self.latura=latura
+    @latura.deleter
+    def latura(self):
+        print(f'Am sters valoarea:')
+        self.latura=0
+class Cerc(FormeGeometrice):
+    def __int__(self,raza):
+        self.raza = raza
+    @property
+    def raza(self):
+        return self.raza
+    @raza.getter
+    def raza(self):
+        print(f'Raza este: {self.raza}')
+        return self.raza
+    @raza.setter
+    def raza(self,raza):
+        print(f'Raza devine: {self.raza}')
+        self.raza=raza
+    @raza.deleter
+    def raza(self):
+        print(f'Am sters valoarea')
+        self.raza=0
+
+
+

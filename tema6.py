@@ -106,7 +106,7 @@ class Angajat:
         return self.salariu*12
     def marire_sal(self, procent):
         procent=int(input("Procentul este:"))
-        self.salariu=self.salariu * procent
+        self.salariu=self.salariu * procent/100*self.salariu
         return self.salariu
 
 ang=Angajat(input('nume '),input('prenume '),int(input('salar ')))
