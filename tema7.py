@@ -1,70 +1,56 @@
-from abc import ABC
+from abc import abstractmethod, ABC
 
-def abstractmetrod(abc):
-    pass
-
-
-class FormeGeometrice(ABC):
-    PI = 3.14
-
-    @abstractmetrod
+class FormeGeometrice:
+    pi = 3.14
+    @abstractmethod
     def aria(self):
-        raise
-
-
+        pass
     def descrie(self):
-        print('Cel mai probabil am colturi')
+        print('cel mai probabil am colturi')
 
 class Patrat(FormeGeometrice):
-    def __int__(self, latura):
-        self.latura=latura
-
+    def __int__(self,latura=0):
+         self._latura=latura
     @property
     def latura(self):
-        return self.latura
-
-    @latura.getter
+        self.latura
     def get_latura(self):
-        print(f'Latura este {self.latura}')
-        return self.latura
+        return self._latura
+    def set_latura(self,x):
+        self._latura=x
 
-    @latura.setter
-    def set_latura(self, latura):
-        print(f'Latura devine {self.latura}')
-        self.latura = latura
-
-    @latura.deleter
     def del_latura(self):
-        print(f'Am sters valoarea:')
-        del self.latura
-    def get_aria(self):
-        return self.get_latura()*self.get_latura()
+        del self._latura
+
+    def aria(self):
+      return self.get_latura()*self.get_latura()
+
 
 class Cerc(FormeGeometrice):
-    def __int__(self, raza=12):
-        self.raza = raza
+    def __int__(self, raza):
+        self._raza = raza
 
-    @property
-    def raza(self):
-        return self.raza
+    def get_raza(self):
+        return self._raza
 
-    @raza.getter
-    def raza(self):
-         return self.raza
+    # @raza.setter
+    def set_raza(self, x):
+        self._raza = x
 
+    def del_raza(self):
+        print('Am sters valoarea')
+        del self._raza
 
-    @raza.setter
-    def raza(self, raza):
-         self.raza = raza
+    def aria(self):
+        return self.get_raza() * self.get_raza()*self.pi
+    def descrie(self):
+        print('Eu nu am colturi')
 
-
-
-    @raza.deleter
-    def raza(self):
-        print(f'Am sters valoarea')
-        del self.raza
-    def ariacerc(self):
-        return self.raza * self.raza * self.PI
-f1 = Cerc()
-print(f1)
-
+f1 = Patrat()
+f1.set_latura(10)
+print(f1.aria())
+f2 = Cerc()
+f2.set_raza(5)
+print(f2.aria())
+f1.descrie()
+f2.descrie()
