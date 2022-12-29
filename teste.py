@@ -1,69 +1,62 @@
-from abc import ABC
+
+# https://personales.unican.es/corcuerp/python/tutorial/Python_OOP.html
+
+#!/usr/bin/env python3
+# -*- coding: UTF-8 -*-
+"""circle.py: The circle module, which defines the Circle class"""
+from math import pi
 
 
-def abstractmetrod(abc):
-    pass
+class Circle:
+    """A Circle instance models a circle with a radius"""
 
-
-class FormeGeometrice(ABC):
-    PI = 3.14
-
-    @abstractmetrod
-    def aria(self):
-        raise
-
-    @abstractmetrod
-    def descrie(self):
-        raise
-
-
-class Descrie:
-    print('Cel mai probabil am colturi')
-
-
-class Patrat(FormeGeometrice):
-    def __int__(self, latura):
-        self.latura = latura
+    def __init__(self, radius=1.0):
+        """Initializer with default radius of 1.0"""
+        self.radius = radius  # Call decorated setter
 
     @property
-    def latura(self):
-        return self.latura
+    def radius(self):
+        """Radius of this circle"""  # doc-string here
+        # Define getter here
+        return self._radius  # Read the hidden instance variable _radius
 
-    @latura.getter
-    def latura(self):
-        print(f'Latura este {self.latura}')
-        return self.latura
+    # Equivalent to:
+    # def get_radius(self):
+    #    return self._radius
+    # radius = property(get_radius)   # Define a property with getter
 
-    @latura.setter
-    def latura(self, latura):
-        print(f'Latura devine {self.latura}')
-        self.latura = latura
+    @radius.setter
+    def radius(self, radius):
+        """Setter for instance variable radius with input validation"""
+        if radius < 0:
+            raise ValueError('Radius shall be non-negative')
+        self._radius = radius  # Set a hidden instance variable _radius
 
-    @latura.deleter
-    def latura(self):
-        print(f'Am sters valoarea:')
-        self.latura = 0
+    @radius.deleter
+    def radius(self):
+        """Deleter for instance variable radius"""
+        del self._radius  # Delete the hidden instance variable _radius
+
+    def get_area(self):
+        """Return the area of this Circle instance"""
+        return self.radius * self.radius * pi  # Call decorated getter
+
+    def __repr__(self):
+        """Self description for this Circle instance, used by print(), str() and repr()"""
+        return 'Circle(radius={})'.format(self.radius)  # Call decorated getter
 
 
-class Cerc(FormeGeometrice):
-    def __int__(self, raza):
-        self.raza = raza
+if __name__ == '__main__':
+    c1 = Circle(1.2)
+    print(c1)  # Output: Circle(radius=1.200000)
+    print(vars(c1))  # Output: {'_radius': 1.2}
+    print(dir(c1))  # Output: ['_radius', 'radius', ...]]
+    c1.radius = 3.4  # Setter
+    print(c1.radius)  # Getter. Output: 3.4
+    print(c1._radius)  # hidden instance variable. Output: 3.4
+    # print(c1.get_radius()) # AttributeError: 'Circle' object has no attribute 'get_radius'
 
-    @property
-    def raza(self):
-        return self.raza
+    c2 = Circle()  # Default radius
+    print(c2)  # Output: Circle(radius=1.000000)
 
-    @raza.getter
-    def raza(self):
-        print(f'Raza este: {self.raza}')
-        return self.raza
-
-    @raza.setter
-    def raza(self, raza):
-        print(f'Raza devine: {self.raza}')
-        self.raza = raza
-
-    @raza.deleter
-    def raza(self):
-        print(f'Am sters valoarea')
-        self.raza = 0
+    c3 = Circle(-5.6)  # ValueError: Radius shall be non-negative
