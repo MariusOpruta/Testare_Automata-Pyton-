@@ -1,4 +1,4 @@
-from abc import abstractmethod, ABC
+from abc import abstractmethod
 
 class FormeGeometrice:
     pi = 3.14
@@ -13,7 +13,7 @@ class Patrat(FormeGeometrice):
          self._latura=latura
     @property
     def latura(self):
-        self.latura
+        return self.latura
     def get_latura(self):
         return self._latura
     def set_latura(self,x):
