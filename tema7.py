@@ -20,10 +20,11 @@ class Patrat(FormeGeometrice):
         self._latura=x
 
     def del_latura(self):
-        del self._latura
+        #del self._latura
+        self._latura=None
 
     def aria(self):
-      return self.get_latura()*self.get_latura()
+      return self._latura*self._latura
 
 
 class Cerc(FormeGeometrice):
@@ -39,10 +40,10 @@ class Cerc(FormeGeometrice):
 
     def del_raza(self):
         print('Am sters valoarea')
-        del self._raza
-
+        #del self._raza
+        self._raza=0
     def aria(self):
-        return self.get_raza() * self.get_raza()*self.pi
+        return self._raza * self._raza*self.pi
     def descrie(self):
         print('Eu nu am colturi')
 
