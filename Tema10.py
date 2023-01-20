@@ -1,4 +1,6 @@
 from time import sleep
+
+import elements as elements
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common import keys
@@ -20,14 +22,10 @@ chrome = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 chrome.maximize_window()
 chrome.get("https://the-internet.herokuapp.com/login")
 chrome.find_element(By.LINK_TEXT,"Elemental Selenium").click()
-driver = webdriver.Chrome()
-driver.execute_script("window.open('','_blank');")
-def test_url(self):
-    actual = self.chrome.current_url
-    expected = 'https://the-internet.herokuapp.com/login '
-    self.assertEqual(expected, actual, 'URL-ul nu este corect')
+chrome.execute_script("window.open('','_blank');")
+assert chrome.current_url=='https://the-internet.herokuapp.com/login'
 chrome.quit()
-# #Test3
+#Test3
 chrome = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 chrome.maximize_window()
 chrome.get("https://the-internet.herokuapp.com/login")
@@ -38,7 +36,7 @@ chrome.find_element(By.CLASS_NAME,"radius").click()
 chrome.find_element(By.CSS_SELECTOR, "[href='/logout']").click()
 assert chrome.current_url=="https://the-internet.herokuapp.com/login"
 chrome.quit()
-# #Test4
+#Test4
 chrome = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 chrome.maximize_window()
 chrome.get("https://the-internet.herokuapp.com/add_remove_elements/")
@@ -46,29 +44,23 @@ chrome.find_element(By.TAG_NAME,"button").click()
 delete_button=chrome.find_element(By.ID,"elements")
 assert delete_button.is_displayed()
 chrome.quit()
-# # Test5
+#Test5
 chrome = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 chrome.maximize_window()
 chrome.get("https://the-internet.herokuapp.com/add_remove_elements/")
 chrome.find_element(By.TAG_NAME,"button").click()
 chrome.find_element(By.CLASS_NAME,"added-manually").click()
-# t=chrome.find_element(By.CLASS_NAME,"added-manually").size()
-# if (t==0):
-#     print('Butonul nu exista')
-# else:
-#     print('Butonul exista')
+#assert not chrome.find_element(By.XPATH,"/html/body/div[2]/div/div/div/button")
 
 # chrome.quit()
-# Test6
+#Test6
 chrome = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 chrome.maximize_window()
 chrome.get("https://the-internet.herokuapp.com/add_remove_elements/")
 button=chrome.find_element(By.TAG_NAME,"button")
 for i in range(10):
     button.click()
-t = chrome.find_element(By.ID,"elements").size(10)
-assert t==10
-
+assert chrome.find_element(By.XPATH,"//*[@id='elements']/button[10]")
 chrome.quit()
 #Test7
 chrome = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
@@ -82,4 +74,4 @@ chrome.find_element(By.ID,"passwd").send_keys("Alabala")
 #chrome.find_element(By.ID,"SubmitLogin").click()
 #assert chrome.find_element(By.CLASS_NAME,"alert alert-danger"),"Am întâmpinat 1 problemă:"
 sleep(10)
-
+chrome.quit()
