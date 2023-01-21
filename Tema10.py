@@ -50,9 +50,8 @@ chrome.maximize_window()
 chrome.get("https://the-internet.herokuapp.com/add_remove_elements/")
 chrome.find_element(By.TAG_NAME,"button").click()
 chrome.find_element(By.CLASS_NAME,"added-manually").click()
-#assert not chrome.find_element(By.XPATH,"/html/body/div[2]/div/div/div/button")
-
-# chrome.quit()
+chrome.find_element(By.XPATH,"//*[@id='elements']").is_displayed()
+chrome.quit()
 #Test6
 chrome = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 chrome.maximize_window()
@@ -70,8 +69,6 @@ chrome.find_element(By.LINK_TEXT,"Contul meu").click()
 email_input = chrome.find_element(By.ID,"email")
 email_input.send_keys("abc@yahoo.com")
 chrome.find_element(By.ID,"passwd").send_keys("Alabala")
-#chrome.find_element(By.CLASS_NAME, "button btn btn-default button-medium button-2action").click()
-#chrome.find_element(By.ID,"SubmitLogin").click()
-#assert chrome.find_element(By.CLASS_NAME,"alert alert-danger"),"Am întâmpinat 1 problemă:"
-sleep(10)
+chrome.find_element(By.CLASS_NAME,"submit").submit()
+#assert nu stiu
 chrome.quit()
