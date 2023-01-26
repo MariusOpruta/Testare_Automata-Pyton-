@@ -73,9 +73,10 @@ chrome.find_element(By.ID,"SubmitLogin").submit()
 email_input = chrome.find_element(By.ID,"email")
 email_input.send_keys("aaasdfsdfd@yahoo.com")
 chrome.find_element(By.ID,"passwd").send_keys("Assssla")
-buton=chrome.find_element(By.ID,"SubmitLogin")
-buton.submit()
-assert chrome.find_element(By.CSS_SELECTOR,"[class='alert alert-danger']") != "Am întâmpinat 1 problemă:"
+chrome.find_element(By.CLASS_NAME,"submit").submit()
+sleep(4)
+assert "Adresa de e-mail este invalida" in chrome.find_element(By.CSS_SELECTOR, "ol>li").text
+#assert chrome.find_element(By.CSS_SELECTOR,"[class='alert alert-danger']") != "Am întâmpinat 1 problemă:"
 #assert chrome.find_element(By.CSS_SELECTOR,"div[class='alert alert-danger']") == "Am întâmpinat 1 problemă:"
 #assert chrome.find_element(By.CSS_SELECTOR,"div[class='alert alert-danger'] > p") == "Am întâmpinat 1 problemă:"
 # assert chrome.find_element(By.CSS_SELECTOR,"[ol>li]") == "Adresa de email sau parola sunt greșite. Încearcă din nou."
